@@ -39,16 +39,18 @@ function getVoteCount(id) {
 	return String(modifiedVotes);
 };
 
+var body = document.querySelector('body');
+
 /*
     initMap initliases the map along with creating markers
 */
 function initMap(modifiedEntrant) {
     var coordinates = modifiedEntrant ? modifiedEntrant.coordinates : null,
         map = new google.maps.Map(document.querySelector('.js-map'), {
-        	zoom: 3,
+        	zoom: 2,
         	center: {
-        		lat: coordinates && coordinates.length ? coordinates[1] : entrants[0].coordinates[1], 
-        		lng: coordinates && coordinates.length ? coordinates[0] : entrants[0].coordinates[0]
+        		lat: coordinates && coordinates.length ? coordinates[1] : entrants[0].coordinates[1] - 20, 
+        		lng: coordinates && coordinates.length ? coordinates[0] : entrants[0].coordinates[0] + 40
         	},
         	mapTypeControl: false
         }),
@@ -79,14 +81,16 @@ function initMap(modifiedEntrant) {
     	(function(marker, i) {
     		google.maps.event.addListener(marker, 'click', function() {
     			var detailsDiv = document.querySelector('.js-details');
-        			detailsDiv.classList.add("show");
-        			detailsDiv.dataset.entrant =  marker.id;
-        			detailsDiv.dataset.votes =  entrants.find(function(entrant){
-    					return entrant.id === detailsDiv.dataset.entrant
-    				}).votes;
+    			
+                body.classList.add("is-overflow-hidden");
+                detailsDiv.classList.add("show");
+    			detailsDiv.dataset.entrant =  marker.id;
+    			detailsDiv.dataset.votes =  entrants.find(function(entrant){
+					return entrant.id === detailsDiv.dataset.entrant
+				}).votes;
 
     			document.querySelector('.js-details-title').innerHTML = marker.title;
-    			document.querySelector('.js-details-img').src = 'assets/flags/' + marker.id + '.png';
+    			document.querySelector('.js-details-img').src = 'assets/big-flag/' + marker.id + '.jpg';
     		});
     	}(marker, i));
     }
@@ -101,6 +105,7 @@ function initMap(modifiedEntrant) {
 
     detailsDivClose.addEventListener('click', function(e) {
         detailsDiv.classList.remove('show');
+        body.classList.remove("is-overflow-hidden");
     });   
 
 	hammertime.on('swipeleft', function(ev) {
@@ -120,6 +125,7 @@ function initMap(modifiedEntrant) {
 
 		modifiedEntrant.votes = detailsDiv.dataset.votes;
 		detailsDiv.classList.remove('show');
+        body.classList.remove("is-overflow-hidden");
 
         //Initialising the map again to with newly modified Entrant
 		initMap(modifiedEntrant);

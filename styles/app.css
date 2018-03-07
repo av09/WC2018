@@ -53,11 +53,10 @@ html, body {
 }
 
 .map {
-	height: 100%;
+	height: calc(100% - 92px);
 }
 
 .entrant {
-	z-index: 0;
 	position: absolute;
     top: 0;
     left: 0;
@@ -65,11 +64,12 @@ html, body {
     width: 0;
     height: 0;
     background: #ccc;
-    -webkit-transition: opacity .5s ease-in;
-    -moz-transition: opacity .5s ease-in;
-    -ms-transition: opacity .5s ease-in;
-    -o-transition: opacity .5s ease-in;
-    	transition: opacity .5s ease-in;
+    padding: 30px;
+    -webkit-transition: width .15s ease;
+    -moz-transition: width .15s ease;
+    -ms-transition: width .15s ease;
+    -o-transition: width .15s ease;
+    	transition: width .15s ease;
 }
 
 .entrant.show {
@@ -79,5 +79,63 @@ html, body {
 }
 
 .entrant__img {
-	width: 100%;
+	 max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    clear: both;
+}
+
+.entrant__hint img {
+	width: 30px;
+	margin-bottom: -7px;
+}
+
+.entrant__title {
+	font-size: 30px;
+    text-align: center;
+    margin: 20px 0 20px;
+}
+
+.entrant span {
+	display: inline-block;
+    float: right;
+    padding: 10px 0 20px;
+}
+
+.entrant span:first-child {
+    float: left;
+    line-height: 2;
+}
+
+.entrant span:first-child img {
+    float: left;
+    margin-right: 5px;
+}
+
+header, 
+footer {
+	padding: 20px 20px;
+    text-align: center;
+    font-size: 20px;
+}
+
+footer {
+	font-size: 12px;
+	padding: 10px 20px;
+}
+
+.entrant__close {
+	font-size: 35px;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: #fff;
+    width: 40px;
+    text-align: center;
+    border-radius: 100px;
+    height: 40px;
+}
+
+.is-overflow-hidden {
+	overflow: hidden;
 }
