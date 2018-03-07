@@ -8,9 +8,24 @@
 		<link rel="stylesheet" type="text/css" href="./styles/app.css">
 	</head>
 	<body>
-		<div class="map js-map"></div>
+		<section class="map js-map"></section>
 		<div class="js-coords"></div>
-		<div class="details js-details"></div>
+		<section class="entrant js-details">
+			<h1 class="entrant__title js-details-title"></h1>
+			<p class="entrant__votes">Votes: <span class=" js-details-votes"></span></p>
+			<p class="entrant__hint">
+				<span>
+					Swipe left 
+					<img src="assets/nay.svg" alt="dislike"/>
+				</span>
+				<span>
+					Swipe right
+					<img src="assets/yay.svg" alt="like"/>
+				</span>
+			</p>
+			<img class="entrant__img js-details-img" src="">
+		</section>
+		<script type="text/javascript" src="./script/vendor/hammer.min.js"></script>
 	    <script type="text/javascript" src="./script/app.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJKIxqhfqeN7L7ugRzFRih4XZXlVErVpY&callback=initMap" async defer></script>
 	</body>
